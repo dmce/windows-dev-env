@@ -1,0 +1,62 @@
+# START http://boxstarter.org/package/nr/url?https://github.com/gaving/windows-dev-env/raw/master/env
+
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
+
+# Always show all items in system tray
+Set-ItemProperty -Path HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name EnableAutoTray -Value 0 -Type DWord
+
+# Turn off integrated search in start menu
+Set-ItemProperty -Path HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name BingSearchEnabled -Value 0 -Type DWord
+
+Disable-BingSearch
+Disable-InternetExplorerESC
+Disable-MicrosoftUpdate
+Disable-UAC
+
+Enable-RemoteDesktop
+Update-ExecutionPolicy Unrestricted
+
+cinst -y boxstarter.chocolatey
+
+choco feature disable -n=checksumFiles
+choco feature enable -n=allowEmptyChecksums
+cinst Microsoft-Hyper-V-All -source windowsFeatures
+
+cinst -y 7zip
+cinst -y GoogleChrome
+cinst -y Gow
+cinst -y cmder
+cinst -y fiddler4
+# cinst -y greenshot
+cinst -y irfanview
+cinst -y sysinternals
+cinst -y putty
+cinst -y vlc
+
+cinst -y git
+cinst -y poshgit
+cinst -y git-credential-manager-for-windows
+
+cinst -y visualstudiocode
+
+cinst -y ruby
+cinst -y python
+cinst -y nodejs
+
+# cinst -y visualstudio2015community
+
+Install-ChocolateyPinnedTaskBarItem "$env:windir\system32\mstsc.exe"
+Install-ChocolateyPinnedTaskBarItem "$($Boxstarter.programFiles86)\Google\Chrome\Application\chrome.exe"
+Install-ChocolateyPinnedTaskBarItem "$($Boxstarter.programFiles86)\Fiddler2\Fiddler.exe"
+Install-WindowsUpdate -getUpdatesFromMS -acceptEula
+
+choco feature enable -n=checksumFiles
+choco feature disable -n=allowEmptyChecksums
+
+Enable-MicrosoftUpdate
+Enable-UAC
+
+del C:\eula*.txt
+del C:\install.*
+del C:\vcredist.*
+del C:\vc_red.*
