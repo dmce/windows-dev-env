@@ -13,7 +13,7 @@ Disable-InternetExplorerESC
 Disable-MicrosoftUpdate
 Disable-UAC
 
-Enable-RemoteDesktop
+#Enable-RemoteDesktop
 Update-ExecutionPolicy Unrestricted
 
 cinst -y boxstarter.chocolatey
