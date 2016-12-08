@@ -48,7 +48,7 @@ cinst -y nodejs
 #Install-ChocolateyPinnedTaskBarItem "$env:windir\system32\mstsc.exe"
 #Install-ChocolateyPinnedTaskBarItem "$($Boxstarter.programFiles86)\Google\Chrome\Application\chrome.exe"
 #Install-ChocolateyPinnedTaskBarItem "$($Boxstarter.programFiles86)\Fiddler2\Fiddler.exe"
-Install-WindowsUpdate -getUpdatesFromMS -acceptEula
+#Install-WindowsUpdate -getUpdatesFromMS -acceptEula
 
 choco feature enable -n=checksumFiles
 choco feature disable -n=allowEmptyChecksums
