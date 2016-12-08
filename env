@@ -31,7 +31,7 @@ cinst -y fiddler4
 cinst -y irfanview
 cinst -y sysinternals
 cinst -y putty
-cinst -y vlc
+#cinst -y vlc
 
 cinst -y git
 cinst -y poshgit
