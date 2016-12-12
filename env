@@ -22,6 +22,8 @@ choco feature disable -n=checksumFiles
 choco feature enable -n=allowEmptyChecksums
 cinst Microsoft-Hyper-V-All -source windowsFeatures
 
+Set-TaskbarOptions -size Small -Lock -Combine Always
+
 cinst -y 7zip
 cinst -y keepass
 cinst -y GoogleChrome
