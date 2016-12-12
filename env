@@ -3,14 +3,14 @@
 Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions -EnableShowFullPathInTitleBar
 
 # Always show all items in system tray
-Set-ItemProperty -Path HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name EnableAutoTray -Value 0 -Type DWord
+#Set-ItemProperty -Path HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name EnableAutoTray -Value 0 -Type DWord
 
 # Turn off integrated search in start menu
 Set-ItemProperty -Path HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name BingSearchEnabled -Value 0 -Type DWord
 
 Disable-BingSearch
 Disable-InternetExplorerESC
-Disable-MicrosoftUpdate
+#Disable-MicrosoftUpdate
 Disable-UAC
 
 #Enable-RemoteDesktop
@@ -53,7 +53,7 @@ cinst -y nodejs
 choco feature enable -n=checksumFiles
 choco feature disable -n=allowEmptyChecksums
 
-Enable-MicrosoftUpdate
+#Enable-MicrosoftUpdate
 Enable-UAC
 
 del C:\eula*.txt
