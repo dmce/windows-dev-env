@@ -24,6 +24,8 @@ cinst Microsoft-Hyper-V-All -source windowsFeatures
 
 Set-TaskbarOptions -size Small -Lock -Combine Always
 
+Move-LibraryDirectory "Downloads" "c:\desktop"
+
 cinst -y 7zip
 cinst -y keepass
 cinst -y GoogleChrome
