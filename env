@@ -24,7 +24,8 @@ cinst Microsoft-Hyper-V-All -source windowsFeatures
 
 Set-TaskbarOptions -size Small -Lock -Combine Always
 
-Move-LibraryDirectory "Desktop" "c:\desktop"
+Move-LibraryDirectory "Desktop" "c:\Desktop"
+Move-LibraryDirectory "Downloads" "c:\Downloads"
 
 cinst -y 7zip
 cinst -y keepass
