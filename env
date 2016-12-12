@@ -23,6 +23,7 @@ choco feature enable -n=allowEmptyChecksums
 cinst Microsoft-Hyper-V-All -source windowsFeatures
 
 cinst -y 7zip
+cinst -y keepass
 cinst -y GoogleChrome
 cinst -y Gow
 cinst -y cmder
