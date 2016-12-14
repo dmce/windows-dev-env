@@ -1,6 +1,9 @@
 # Set session to use default proxy
 (New-Object System.Net.WebClient).Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
 
+# Install Chocolatey 
+iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
+
 function InstallChocoPackage {
   param ([string]$PackageName)
   Write-Host "Installing $PackageName from Chocolatey" -ForeGroundColor "White"
@@ -42,8 +45,8 @@ if ((Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online).State -N
 }
 
 # Install Chocolatey Packages
-InstallChocoPackage -PackageName 7zip.install
-InstallChocoPackage -PackageName nodejs.install
+InstallChocoPackage -PackageName 7zip
+InstallChocoPackage -PackageName nodejs
 InstallChocoPackage -PackageName ruby
 InstallChocoPackage -PackageName python
 
