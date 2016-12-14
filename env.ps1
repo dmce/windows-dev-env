@@ -18,20 +18,20 @@ Register-PackageSource -provider NuGet -name nugetRepository -location http://ww
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 # Install Chocolatey Packages
-Install-Package 7zip.install -ProviderName chocolatey
-Install-Package nodejs.install -ProviderName chocolatey
-Install-Package ruby -ProviderName chocolatey
-Install-Package python -ProviderName chocolatey
+Install-Package 7zip.install -ProviderName chocolatey -Force
+Install-Package nodejs.install -ProviderName chocolatey -Force
+Install-Package ruby -ProviderName chocolatey -Force
+Install-Package python -ProviderName chocolatey -Force
 
-Install-Package gow -ProviderName chocolatey
-Install-Package cmder -ProviderName chocolatey
-Install-Package git -ProviderName chocolatey
-Install-Package poshgit -ProviderName chocolatey
-Install-Package git-credential-manager-for-windows -ProviderName chocolatey
-Install-Package sysinternals -ProviderName chocolatey
+Install-Package gow -ProviderName chocolatey -Force
+Install-Package cmder -ProviderName chocolatey -Force
+Install-Package git -ProviderName chocolatey -Force
+Install-Package poshgit -ProviderName chocolatey -Force
+Install-Package git-credential-manager-for-windows -ProviderName chocolatey -Force
+Install-Package sysinternals -ProviderName chocolatey -Force
 
-Install-Package googlechrome -ProvderName chocolatey
-Install-Package fiddler4 -ProviderName chocolatey
-Install-Package infranview -ProviderName chocolatey
-Install-Package putty -ProviderName chocolatey
-Install-Package visualstudiocode -ProviderName chocolatey
+Install-Package googlechrome -ProvderName chocolatey -Force
+Install-Package fiddler4 -ProviderName chocolatey -Force
+Install-Package infranview -ProviderName chocolatey -Force
+Install-Package putty -ProviderName chocolatey -Force
+Install-Package visualstudiocode -ProviderName chocolatey -Force
