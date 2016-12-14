@@ -18,8 +18,8 @@ Update-ExecutionPolicy Unrestricted
 
 cinst -y boxstarter.chocolatey
 
-choco feature disable -n=checksumFiles
-choco feature enable -n=allowEmptyChecksums
+#choco feature disable -n=checksumFiles
+#choco feature enable -n=allowEmptyChecksums
 cinst Microsoft-Hyper-V-All -source windowsFeatures
 
 Set-TaskbarOptions -size Small -Lock -Combine Always
