@@ -21,22 +21,22 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 
 # Install Chocolatey Packages
 Install -PackageName 7zip.install -ProviderName chocolatey -AdditionalParameters "-Force"
-Install-Package nodejs.install -ProviderName chocolatey -Force
-Install-Package ruby -ProviderName chocolatey -Force
-Install-Package python -ProviderName chocolatey -Force
+Install -PackageName nodejs.install -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName ruby -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName python -ProviderName chocolatey -AdditionalParameters "-Force"
 
-Install-Package gow -ProviderName chocolatey -Force
-Install-Package cmder -ProviderName chocolatey -Force
-Install-Package git -ProviderName chocolatey -Force
-Install-Package poshgit -ProviderName chocolatey -Force
-Install-Package git-credential-manager-for-windows -ProviderName chocolatey -Force
-Install-Package sysinternals -ProviderName chocolatey -Force
+Install -PackageName gow -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName cmder -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName git -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName poshgit -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName git-credential-manager-for-windows -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName sysinternals -ProviderName chocolatey -AdditionalParameters "-Force"
 
-Install-Package googlechrome -ProviderName chocolatey -Force
-Install-Package fiddler4 -ProviderName chocolatey -Force
-Install-Package infranview -ProviderName chocolatey -Force
-Install-Package putty -ProviderName chocolatey -Force
-Install-Package visualstudiocode -ProviderName chocolatey -Force
+Install -PackageName googlechrome -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName fiddler4 -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName infranview -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName putty -ProviderName chocolatey -AdditionalParameters "-Force"
+Install -PackageName visualstudiocode -ProviderName chocolatey -AdditionalParameters "-Force"
 
 function Install {
   param ([string]$PackageName, [string]$ProviderName, [bool]$AddtionalParameters)
