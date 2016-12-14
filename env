@@ -9,7 +9,7 @@ Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtec
 #Set-ItemProperty -Path HKCU:SOFTWARE\Microsoft\Windows\CurrentVersion\Search -Name BingSearchEnabled -Value 0 -Type DWord
 #Disable-BingSearch
 
-Disable-InternetExplorerESC
+#Disable-InternetExplorerESC
 #Disable-MicrosoftUpdate
 Disable-UAC
 
