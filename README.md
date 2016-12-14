@@ -18,3 +18,4 @@ A number of these would be covered by developer mode if it was available
 * Security Settings block other install packages from other source (i.e. 7zip comes from 7zip and is an exe)
 * Developer Mode
 * UAC
+* Chocolatey Provider for OneGet isnt official
