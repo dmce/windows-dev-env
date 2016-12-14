@@ -5,7 +5,7 @@ function InstallChocoPackage {
   param ([string]$PackageName)
   Write-Host "Installing $PackageName from Chocolatey" -ForeGroundColor "White"
   try {    
-    Install-Package $PackageName -ProviderName chocolatey -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+    Install-Package $PackageName -ProviderName chocolatey -Force -ErrorAction Stop -WarningAction Stop
     Write-Host "Installed: $PackageName" -ForeGroundColor "Green"
   } catch {
     Write-Host "Not Installed: $PackageName" -ForeGroundColor "Red"
@@ -18,7 +18,7 @@ function InstallChocoPackage {
 
 # Install Chocolatey package provider
 try {
-  Get-PackageProvider chocolatey -ForceBootstrap -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+  Install-PackageProvider chocolatey -ForceBootstrap -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
   #Set-PackageSource -Name chocolatey -Trusted
 } catch {
   # Log
@@ -26,10 +26,10 @@ try {
 
 # Install Nuget package provider
 try {
-  Get-PackageProvider nuget -ForceBootstrap -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+  Install-PackageProvider nuget -ForceBootstrap -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
   #Set-PackageSource -Name nuget -Trusted
   # https://github.com/OneGet/oneget/wiki/Q-and-A
-  if ((Get-PackageSource -Name nuget -ErrorAction SilentlyContinue).Name -NotMatch "nuget") {
+  if ((Get-PackageSource -ProviderName NuGet -ErrorAction SilentlyContinue).ProviderName -NotMatch "NuGet") {
     Register-PackageSource -provider NuGet -name nugetRepository -location http://www.nuget.org/api/v2 -Force
   }
 } catch {
@@ -37,7 +37,9 @@ try {
 }
 
 # Windows Options/Features
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+if ((Get-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V -Online).State -NotMatch "Enabled") {
+  Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+}
 
 # Install Chocolatey Packages
 InstallChocoPackage -PackageName 7zip.install
