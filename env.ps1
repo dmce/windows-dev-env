@@ -1,51 +1,59 @@
 # Set session to use default proxy
 (New-Object System.Net.WebClient).Proxy.Credentials = [System.Net.CredentialCache]::DefaultNetworkCredentials
 
-# Set Execution Policy - Needed?
-#Set-ExecutionPolicy unrestrcited
-
-# Install Chocolatey package provider
-Get-PackageProvider -Name chocolatey
-#Set-PackageSource -Name chocolatey -Trusted
-
-# Install Nuget package provider
-Get-PackageProvider -Name nuget
-#Set-PackageSource -Name nuget -Trusted
-# https://github.com/OneGet/oneget/wiki/Q-and-A
-if ((Get-PackageSource -Name chocolatey -ErrorAction SilentlyContinue).Name -NotMatch "chocolatey") {
-  Register-PackageSource -provider NuGet -name nugetRepository -location http://www.nuget.org/api/v2 -Force
-}
-
-# Windows Options/Features
-Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
-
-# Install Chocolatey Packages
-Install -PackageName 7zip.install -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName nodejs.install -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName ruby -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName python -ProviderName chocolatey -AdditionalParameters "-Force"
-
-Install -PackageName gow -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName cmder -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName git -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName poshgit -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName git-credential-manager-for-windows -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName sysinternals -ProviderName chocolatey -AdditionalParameters "-Force"
-
-Install -PackageName googlechrome -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName fiddler4 -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName infranview -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName putty -ProviderName chocolatey -AdditionalParameters "-Force"
-Install -PackageName visualstudiocode -ProviderName chocolatey -AdditionalParameters "-Force"
-
-function Install {
-  param ([string]$PackageName, [string]$ProviderName, [bool]$AddtionalParameters)
-  Write-Host "Installing $PackageName from $ProviderName" -ForeGroundColor "White"
-  try {
-    Install-Package $PackageName -ProviderName $ProviderName $AdditionalParamters -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+function InstallChocoPackage {
+  param ([string]$PackageName)
+  Write-Host "Installing $PackageName from Chocolatey" -ForeGroundColor "White"
+  try {    
+    Install-Package $PackageName -ProviderName chocolatey -Force -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
     Write-Host "Installed: $PackageName" -ForeGroundColor "Green"
   } catch {
     Write-Host "Not Installed: $PackageName" -ForeGroundColor "Red"
     # Write Log
   }
 }
+
+# Set Execution Policy - Needed? Possibly not if ean with "Run with Powershell"
+# Set-ExecutionPolicy unrestrcited
+
+# Install Chocolatey package provider
+try {
+  Get-PackageProvider chocolatey -ForceBootstrap -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+  #Set-PackageSource -Name chocolatey -Trusted
+} catch {
+  # Log
+}
+
+# Install Nuget package provider
+try {
+  Get-PackageProvider nuget -ForceBootstrap -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+  #Set-PackageSource -Name nuget -Trusted
+  # https://github.com/OneGet/oneget/wiki/Q-and-A
+  if ((Get-PackageSource -Name nuget -ErrorAction SilentlyContinue).Name -NotMatch "nuget") {
+    Register-PackageSource -provider NuGet -name nugetRepository -location http://www.nuget.org/api/v2 -Force
+  }
+} catch {
+  # Log
+}
+
+# Windows Options/Features
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+# Install Chocolatey Packages
+InstallChocoPackage -PackageName 7zip.install
+InstallChocoPackage -PackageName nodejs.install
+InstallChocoPackage -PackageName ruby
+InstallChocoPackage -PackageName python
+
+InstallChocoPackage -PackageName gow
+InstallChocoPackage -PackageName cmder
+InstallChocoPackage -PackageName git
+InstallChocoPackage -PackageName poshgit
+InstallChocoPackage -PackageName git-credential-manager-for-windows
+InstallChocoPackage -PackageName sysinternals
+
+InstallChocoPackage -PackageName googlechrome
+InstallChocoPackage -PackageName fiddler4
+InstallChocoPackage -PackageName infranview
+InstallChocoPackage -PackageName putty
+InstallChocoPackage -PackageName visualstudiocode
