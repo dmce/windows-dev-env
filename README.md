@@ -6,7 +6,7 @@ A number of these would be covered by developer mode if it was available
 * Show Protected OS Files
 * Show File Extensions
 * Show Full Path in Title Bar
-* Set Powershell to unrestricted
+* Set Powershell to unrestricted (Is this needed in WMF v5)
 * Taskbar Small
 * Taskbar Lock
 * Taskbar Always Group
