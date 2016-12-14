@@ -39,7 +39,7 @@ Install-Package putty -ProviderName chocolatey -Force
 Install-Package visualstudiocode -ProviderName chocolatey -Force
 
 function Install {
-  param ([string]$PackageName, [string]$ProviderName, [bool]$AddtionalParameters
+  param ([string]$PackageName, [string]$ProviderName, [bool]$AddtionalParameters)
   Write-Host "Installing $PackageName from $ProviderName" -ForeGroundColor "White"
   try {
     Install-Package $PackageName -ProviderName $ProviderName $AdditionalParamters -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
